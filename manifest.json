@@ -1,0 +1,21 @@
+{
+	"manifest_version": 3,
+	"name": "GPT Prompt UI",
+	"version": "1.0",
+	"description": "Prompt UI for ChatGPT",
+
+	"content_scripts": [
+		{
+			"matches": ["https://chat.openai.com/*"],
+			"css": ["content.css"],
+			"js": ["content.js"]
+			
+		}
+	],
+
+       
+	"action": {
+		"default_title": "GPT Prompt UI",
+		"default_popup": "popup/popup.html"
+	}
+}
