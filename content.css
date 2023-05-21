@@ -48,9 +48,16 @@
     background-color: #3e8e41;
 }
 
+.task-ui .close-btn{
+    background-color: #FF0000;
+}
+
+.task-ui .close-btn:hover{
+    background-color: #FF3333;
+}
 
 
-.upload-failed {
+.send-error {
     color: #ff0000;
 }
 

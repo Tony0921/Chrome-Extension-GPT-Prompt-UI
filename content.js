@@ -18,35 +18,41 @@ chrome.runtime.onMessage.addListener(
 const taskUI = document.createElement('div');
 const row1 = document.createElement('div');
 const taskText = document.createElement('div');
-const input = document.createElement('textarea');
+const iuputText = document.createElement('textarea');
+const sendError = document.createElement('div');
 const row2 = document.createElement('div');
 const sendBtn = document.createElement('button');
 const closeBtn = document.createElement('button');
 const bg = document.createElement("div");
 
-function initUI(){
+function initUI() {
     taskUI.classList.add('task-ui');
     row1.classList.add('row1');
     taskText.classList.add('task-text');
-    // input.setAttribute('type', 'text');
-    row2.classList.add('row2');
+    sendError.classList.add('send-error');
 
+    row2.classList.add('row2');
     sendBtn.classList.add('send-btn');
     sendBtn.innerText = "Send";
-    sendBtn.addEventListener("click", async function(){
-        
+    sendBtn.addEventListener("click", async function () {
+        if (iuputText.value.trim() != '') {
+            sendMsg(taskText.innerText, iuputText.value);
+        } else {
+            sendError.innerText = "輸入不得為空值！";
+        }
     });
 
     closeBtn.classList.add('close-btn');
     closeBtn.innerText = "Close";
-    closeBtn.addEventListener("click", async function(){
+    closeBtn.addEventListener("click", async function () {
         removeUI();
     });
 
     bg.classList.add("alert-bg");
 
     row1.appendChild(taskText);
-    row1.appendChild(input);
+    row1.appendChild(iuputText);
+    row1.appendChild(sendError);
     taskUI.appendChild(row1);
     row2.appendChild(sendBtn);
     row2.appendChild(closeBtn);
@@ -55,14 +61,50 @@ function initUI(){
 
 initUI();
 
-function showUI(prompt){
+function showUI(prompt) {
     taskText.innerText = prompt;
     document.body.appendChild(taskUI);
     document.body.appendChild(bg);
 }
 
-function removeUI(){
+function removeUI() {
+    iuputText.value = "";
+    sendError.innerText = "";
     taskUI.remove();
     bg.remove();
 }
 
+function sendMsg(prompt, msg) {
+    console.log(prompt + "\n\n" + msg);
+    setFieldValue(prompt + "\n\n" + msg);
+    checkFieldValue(taskText.innerText);
+    removeUI();
+}
+
+function setFieldValue(value) {
+    var inputField = document.getElementsByTagName("textarea")[0];
+    inputField.value = value;
+
+    // set textfield height
+    if (inputField.scrollHeight < 200) {
+        inputField.setAttribute("style", " max-height:200px; height:" + (inputField.scrollHeight) + "px; overflow-y: hidden;");
+    } else {
+        inputField.setAttribute("style", "max-height:200px; height:" + (inputField.scrollHeight) + "px;");
+    }
+}
+
+function getSendBtn() {
+    var element_1 = document.querySelectorAll('button.absolute.p-1');
+    return element_1[0];
+}
+
+function checkFieldValue(value) {
+    var sendBtn = getSendBtn();
+
+    // enable button
+    if (value != "") {
+        sendBtn.disabled = false;
+    } else {
+        sendBtn.disabled = true;
+    }
+}
