@@ -16,32 +16,49 @@ chrome.runtime.onMessage.addListener(
 );
 
 const taskUI = document.createElement('div');
+
 const row1 = document.createElement('div');
-const taskText = document.createElement('div');
+const promptText_label = document.createElement('div');
+const promptText = document.createElement('textarea');
+
+const row2 = document.createElement('div');
+const iuputText_label = document.createElement('div');
 const iuputText = document.createElement('textarea');
 const sendError = document.createElement('div');
-const row2 = document.createElement('div');
+
+const row3 = document.createElement('div');
 const sendBtn = document.createElement('button');
 const closeBtn = document.createElement('button');
+
 const bg = document.createElement("div");
 
 function initUI() {
     taskUI.classList.add('task-ui');
+
     row1.classList.add('row1');
-    taskText.classList.add('task-text');
-    sendError.classList.add('send-error');
+    promptText_label.classList.add('prompt-text-label');
+    promptText_label.innerText = "指令輸入框：";
+    promptText.classList.add('prompt-text');
 
     row2.classList.add('row2');
+    iuputText_label.classList.add('input-text-label');
+    iuputText_label.innerText = "文章內容：";
+    iuputText.classList.add('input-text');
+    iuputText.placeholder = "請於此輸入框填入內容...";
+    sendError.classList.add('send-error');
+
+    row3.classList.add('row3');
     sendBtn.classList.add('send-btn');
     sendBtn.innerText = "Send";
     sendBtn.addEventListener("click", async function () {
-        if (iuputText.value.trim() != '') {
-            sendMsg(taskText.innerText, iuputText.value);
+        console.log("sendBtn event");
+        if (iuputText.value.trim() !== '') {
+            sendMsg(promptText.value.trim(), iuputText.value);
         } else {
             sendError.innerText = "輸入不得為空值！";
         }
     });
-
+    
     closeBtn.classList.add('close-btn');
     closeBtn.innerText = "Close";
     closeBtn.addEventListener("click", async function () {
@@ -50,24 +67,38 @@ function initUI() {
 
     bg.classList.add("alert-bg");
 
-    row1.appendChild(taskText);
-    row1.appendChild(iuputText);
-    row1.appendChild(sendError);
+    row1.appendChild(promptText_label);
+    row1.appendChild(promptText);
     taskUI.appendChild(row1);
-    row2.appendChild(sendBtn);
-    row2.appendChild(closeBtn);
+
+    row2.appendChild(iuputText_label);
+    row2.appendChild(iuputText);
+    row2.appendChild(sendError);
     taskUI.appendChild(row2);
+
+    row3.appendChild(sendBtn);
+    row3.appendChild(closeBtn);
+    taskUI.appendChild(row3);
 }
 
 initUI();
 
 function showUI(prompt) {
-    taskText.innerText = prompt;
+    // taskText.innerText = prompt;
+    promptText.placeholder = prompt;
+    promptText.value = prompt;
+    promptText.addEventListener("blur", async function () {
+        if (promptText.value.trim() == '') {
+            promptText.value = prompt;
+        }
+    });
+    
     document.body.appendChild(taskUI);
     document.body.appendChild(bg);
 }
 
 function removeUI() {
+    console.log("remove UI");
     iuputText.value = "";
     sendError.innerText = "";
     taskUI.remove();
