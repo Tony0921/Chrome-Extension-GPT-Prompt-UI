@@ -1,16 +1,20 @@
 chrome.runtime.onMessage.addListener(
     function (message, sender, sendResponse) {
-        if (message.type === "task1") {
-            showUI("基於以下文章，以繁體中文出五題選擇題，每題四個選項，題目類型包括文意、修辭等範圍，並附上答案");
-        }
-        if (message.type === "task2") {
+        if (message.type === "task1_1") {
             showUI("依據以下計畫徵件說明撰寫章節大綱");
         }
-        if (message.type === "task3") {
+        if (message.type === "task1_2") {
             showUI("依據以下計畫章節與相關資料撰寫計畫章節內文");
         }
-        if (message.type === "task4") {
+
+        if (message.type === "task2_1") {
+            showUI("基於以下文章，以繁體中文出五題選擇題，每題四個選項，題目類型包括文意、修辭等範圍，並附上答案");
+        }
+        if (message.type === "task2_2") {
             showUI("依據以下資料，思考並架構在教學時，老師可能會遭遇的問題，請列表格寫出師生困境");
+        }
+        if (message.type === "task2_3") {
+            showUI("請評價以下這篇作文而且附上三個建議，作文程度為國小五年級");
         }
     }
 );
@@ -106,9 +110,10 @@ function removeUI() {
 }
 
 function sendMsg(prompt, msg) {
-    console.log(prompt + "\n\n" + msg);
+    // console.log(prompt + "\n\n" + msg);
     setFieldValue(prompt + "\n\n" + msg);
-    checkFieldValue(taskText.innerText);
+    checkFieldValue(prompt + "\n\n" + msg);
+    clickSend();
     removeUI();
 }
 
@@ -138,4 +143,10 @@ function checkFieldValue(value) {
     } else {
         sendBtn.disabled = true;
     }
+}
+
+function clickSend() {
+    var sendBtn = getSendBtn();
+    sendBtn.click();
+    canSend = false;
 }
