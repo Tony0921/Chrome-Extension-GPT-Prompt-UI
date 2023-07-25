@@ -110,16 +110,16 @@ function removeUI() {
 }
 
 function sendMsg(prompt, msg) {
-    // console.log(prompt + "\n\n" + msg);
     setFieldValue(prompt + "\n\n" + msg);
-    checkFieldValue(prompt + "\n\n" + msg);
     clickSend();
     removeUI();
 }
 
 function setFieldValue(value) {
-    var inputField = document.getElementsByTagName("textarea")[0];
+    var inputField = document.getElementById("prompt-textarea");
     inputField.value = value;
+    inputField.dispatchEvent(new Event("input", { bubbles: true }));
+    inputField.focus();
 
     // set textfield height
     if (inputField.scrollHeight < 200) {
@@ -134,19 +134,9 @@ function getSendBtn() {
     return element_1[0];
 }
 
-function checkFieldValue(value) {
-    var sendBtn = getSendBtn();
-
-    // enable button
-    if (value != "") {
-        sendBtn.disabled = false;
-    } else {
-        sendBtn.disabled = true;
-    }
-}
-
 function clickSend() {
     var sendBtn = getSendBtn();
     sendBtn.click();
     canSend = false;
+    sendBtn.disabled = false;
 }
