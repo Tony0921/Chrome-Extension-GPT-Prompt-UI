@@ -1,4 +1,4 @@
-# Chrome-Extension-UI
+# Chrome-Extension-GPT-Prompt-UI
 
 A Chrome extension that provides a user interface for interacting with ChatGPT.
 
