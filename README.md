@@ -30,10 +30,6 @@ The GPT Prompt UI is a Chrome extension that enhances the user experience of int
 3. The GPT Prompt UI will automatically appear in the webpage's chat interface.
 4. Use the provided UI elements to interact with ChatGPT, including entering prompts and content, sending messages, and closing the UI when done.
 
-## Contributing
-
-Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request to this repository.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
