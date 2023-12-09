@@ -130,7 +130,7 @@ function setFieldValue(value) {
 }
 
 function getSendBtn() {
-    var element_1 = document.querySelectorAll('button.absolute.p-1');
+    var element_1 = document.querySelectorAll('button.absolute[data-testid="send-button"]');
     return element_1[0];
 }
 
