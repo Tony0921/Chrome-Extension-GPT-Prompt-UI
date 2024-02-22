@@ -1,4 +1,7 @@
+
 # Chrome-Extension-GPT-Prompt-UI
+
+![GPT Prompt UI Icon](icons/icon128.png)
 
 A Chrome extension that provides a user interface for interacting with ChatGPT.
 
@@ -17,6 +20,14 @@ The GPT Prompt UI is a Chrome extension that enhances the user experience of int
 
 ## Installation
 
+**Method one: Installation via WebStore**
+
+1. Open the Chrome browser and navigate to the [GPT Prompt UI](https://chromewebstore.google.com/detail/gpt-prompt-ui/doapoheickecgjamekldhmpodpofofnn) on the Chrome Web Store.
+2. Click on "Add to Chrome".
+3. Follow the on-screen instructions to complete the installation.
+
+**Method two: Local installation**
+
 1. Clone or download this repository.
 2. Open Google Chrome and go to `chrome://extensions`.
 3. Enable "Developer mode" in the top-right corner.
@@ -33,4 +44,3 @@ The GPT Prompt UI is a Chrome extension that enhances the user experience of int
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
