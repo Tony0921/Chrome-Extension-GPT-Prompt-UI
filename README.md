@@ -36,9 +36,9 @@ The GPT Prompt UI is a Chrome extension that enhances the user experience of int
 
 ## Usage
 
-1. Open a new tab in Google Chrome.
-2. Navigate to a supported webpage (e.g., `https://chat.openai.com/*`).
-3. The GPT Prompt UI will automatically appear in the webpage's chat interface.
+1. Navigate to [ChatGPT](https://chat.openai.com/).
+2. Click on the "GPT Prompt UI" icon in the Chrome toolbar
+3. Select the appropriate function, and the UI will automatically appear in the chat interface of the webpage.
 4. Use the provided UI elements to interact with ChatGPT, including entering prompts and content, sending messages, and closing the UI when done.
 
 ## License
