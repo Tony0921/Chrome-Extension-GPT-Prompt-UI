@@ -130,7 +130,7 @@ function setFieldValue(value) {
 }
 
 function getSendBtn() {
-    var element_1 = document.querySelectorAll('button[data-testid="fruitjuice-send-button"]');
+    var element_1 = document.querySelectorAll('button[data-testid="send-button"]');
     return element_1[0];
 }
 
